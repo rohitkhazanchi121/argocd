@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: timescaledb
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.timescale.com
+    chart: timescaledb-single
+    targetRevision: latest
+    helm:
+      values: |
+        replicaCount: 1
+        persistence:
+          enabled: false
+        postgresql:
+          password: mypassword
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
