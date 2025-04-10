@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sytheticdata-cronjob
+  namespace: default  # Change to your desired namespace
+spec:
+  schedule: "0 * * * *"  # Runs at the start of every hour (adjust to your schedule)
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: syntheticdata
+              image: localhost:5000/synthetic_data:latest  # Local image built using Minikube's Docker daemon
+              imagePullPolicy: Never  # Ensure it doesn't try to pull from a registry
+          restartPolicy: OnFailure  # Optionally change this to "Never" if you don't want retries
