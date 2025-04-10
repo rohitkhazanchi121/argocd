@@ -13,4 +13,22 @@ spec:
             - name: syntheticdata
               image: localhost:5000/synthetic_data:latest  # Local image built using Minikube's Docker daemon
               imagePullPolicy: Never  # Ensure it doesn't try to pull from a registry
+              env:
+                - name: PG_DATABASE
+                  value: postgres
+                - name: PG_HOST
+                  value: acid-minimal-cluster.default.svc.cluster.local
+                - name: PG_PORT
+                  value: "5432"
+                - name: PG_USERNAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                      key: username
+                - name: PG_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                      key: password
           restartPolicy: OnFailure  # Optionally change this to "Never" if you don't want retries
+          suspend: true  # Set to true to suspend the job
