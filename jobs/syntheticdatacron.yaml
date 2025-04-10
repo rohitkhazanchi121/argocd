@@ -12,7 +12,7 @@ spec:
           containers:
             - name: syntheticdata
               image: localhost:5000/synthetic_data:latest  # Local image built using Minikube's Docker daemon
-              imagePullPolicy: always  # Ensure it doesn't try to pull from a registry
+              imagePullPolicy: Always  # Ensure it doesn't try to pull from a registry
               env:
                 - name: PG_DATABASE
                   value: postgres
