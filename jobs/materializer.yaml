@@ -4,8 +4,9 @@ metadata:
   labels:
     app: pro-opti-materializer
   name: pro-opti-materializer
+  namespace: default 
 spec:
-  replicas: 0 #TODO set to 1 when real images present
+  replicas: 1 #TODO set to 1 when real images present
   revisionHistoryLimit: 2
   selector:
     matchLabels:
