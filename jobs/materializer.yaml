@@ -44,7 +44,7 @@ spec:
               value: 'True'
             - name: LOCAL_DEV
               value: 'True' 
-          image: materializer:tag
+          image: localhost:5000/materializer:tag
           name: pro-opti-materializer
           ports:
             - containerPort: 8000
