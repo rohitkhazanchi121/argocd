@@ -41,9 +41,9 @@ spec:
             - name: TDP_EH_NAME
               value: hvc-pro-data
             - name: DEBUG
-              value: True
+              value: 'True'
             - name: LOCAL_DEV
-              value: True 
+              value: 'True' 
           image: materializer:tag
           name: pro-opti-materializer
           ports:
