@@ -15,7 +15,7 @@ spec:
         spec:
           containers:
             - name: pro-opti-inference-optimizer
-              image: acrdaplatformuat.azurecr.io/pro-opti/pro-opti-inference:qa1
+              image: localhost:5000/inference:tag
               imagePullPolicy: Always
               resources:
                 requests:
