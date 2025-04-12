@@ -4,6 +4,6 @@ metadata:
   name: cronjob-reader
   namespace: default
 rules:
-- apiGroups: ["batch","core"]
+- apiGroups: ["batch",""]
   resources: ["cronjobs", "jobs", "pods", "services"]
   verbs: ["get", "list", "watch", "create"]
