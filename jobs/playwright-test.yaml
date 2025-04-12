@@ -43,11 +43,6 @@ spec:
                     secretKeyRef:
                       name: postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
                       key: password
-                - name: APPLICATIONINSIGHTS_CONNECTION_STRING
-                  valueFrom:
-                    secretKeyRef:
-                      name: appi-proopti-qa-connstr
-                      key: attribute.connection_string
                 - name: MATERIALIZER_ENDPOINT
                   value: pro-opti-materializer
                 - name: KUBERNETES_SERVICE_HOST
