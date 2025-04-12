@@ -53,3 +53,4 @@ spec:
                 - name: KUBERNETES_SERVICE_HOST
                   value: 'True'
           restartPolicy: OnFailure
+          suspend: true
