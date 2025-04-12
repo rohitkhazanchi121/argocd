@@ -5,5 +5,5 @@ metadata:
   namespace: default
 rules:
 - apiGroups: ["batch"]
-  resources: ["cronjobs", "jobs"]
-  verbs: ["get", "list", "watch"]
+  resources: ["cronjobs", "jobs", "pods"]
+  verbs: ["get", "list", "watch", "create"]
