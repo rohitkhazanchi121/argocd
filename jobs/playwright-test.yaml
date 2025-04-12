@@ -1,0 +1,55 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pro-opti-playwright-cron
+  namespace: default  # Change to your desired namespace
+spec:
+  suspend: true #TODO remove when real images present
+  schedule: "*/30 * * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: pro-opti-playwright
+              image: localhost:5000/playwrighttest:tag
+              imagePullPolicy: Always
+              resources:
+                requests:
+                  memory: 512Mi
+                  cpu: 500m
+                limits:
+                  memory: 512Mi
+                  cpu: 500m
+              env:
+                - name: ENVIRONMENT
+                  value: qa
+                - name: PG_DATABASE
+                  value: postgres
+                - name: PG_HOST
+                  value: acid-minimal-cluster.default.svc.cluster.local
+                - name: PG_PORT
+                  value: "5432"
+                - name: PG_USERNAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                      key: username
+                - name: PG_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                      key: password
+                - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+                  valueFrom:
+                    secretKeyRef:
+                      name: appi-proopti-qa-connstr
+                      key: attribute.connection_string
+                - name: MATERIALIZER_ENDPOINT
+                  value: pro-opti-materializer
+                - name: KUBERNETES_SERVICE_HOST
+                  value: 'True'
+          restartPolicy: OnFailure
