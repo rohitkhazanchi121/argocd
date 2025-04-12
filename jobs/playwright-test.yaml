@@ -44,8 +44,6 @@ spec:
                       name: postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
                       key: password
                 - name: MATERIALIZER_ENDPOINT
-                  value: pro-opti-materializer
-                - name: KUBERNETES_SERVICE_HOST
-                  value: 'True'
+                  value: pro-opti-materialize
           restartPolicy: OnFailure
           suspend: true
