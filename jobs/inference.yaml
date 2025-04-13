@@ -51,4 +51,3 @@ spec:
                       apiVersion: v1
                       fieldPath: metadata.uid
           restartPolicy: OnFailure
-          suspend: true

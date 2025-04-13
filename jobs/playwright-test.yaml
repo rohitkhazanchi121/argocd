@@ -13,7 +13,7 @@ spec:
     spec:
       template:
         spec:
-          backoffLimit: 1
+          backoffLimit: 
           containers:
             - name: pro-opti-playwright
               image: localhost:5000/playwrighttest:tag
@@ -47,4 +47,3 @@ spec:
                 - name: MATERIALIZER_ENDPOINT
                   value: pro-opti-materialize
           restartPolicy: OnFailure
-          suspend: true
