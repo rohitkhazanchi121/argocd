@@ -102,7 +102,8 @@ docker info
 
 ## Deploy PostgreSQL Operator
 
-### Apply Postgres Operator
+### Apply Postgres Operator 
+Clone this repo first
 ```bash
 kubectl apply -k root-app.yaml
 ```
