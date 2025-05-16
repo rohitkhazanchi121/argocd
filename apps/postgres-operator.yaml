@@ -10,7 +10,6 @@ apiVersion: argoproj.io/v1alpha1
     project: default
     source:
       directory:
-        jsonnet: {}
         recurse: true
       path: manifests
       repoURL: https://github.com/zalando/postgres-operator.git
