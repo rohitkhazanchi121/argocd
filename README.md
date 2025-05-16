@@ -100,19 +100,20 @@ eval $(minikube docker-env)
 docker info
 ```
 
-### Build and Push Docker Image Locally
+## Deploy PostgreSQL Operator
+
+### Apply Postgres Operator
+```bash
+kubectl apply -k root-app.yaml
+```
+
+## Build and Push Docker Image Locally 
 ```bash
 docker build -t localhost:5000/my-image:tag .
 docker push localhost:5000/my-image:tag
 ```
 Minikube's local registry runs on `localhost:5000`.
 
-## Deploy PostgreSQL Operator
-
-### Apply Postgres Operator
-```bash
-kubectl apply -k github.com/zalando/postgres-operator/manifests
-```
 
 ## Deploy Jobs via Argo CD
 
