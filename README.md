@@ -110,6 +110,7 @@ kubectl apply -f root-app.yaml
 
 ## Build and Push Docker Image Locally 
 ```bash
+eval $(minikube docker-env)
 docker build -t localhost:5000/my-image:tag .
 docker push localhost:5000/my-image:tag
 ```
