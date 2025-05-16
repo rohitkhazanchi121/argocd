@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+  kind: Application
+  metadata:
+    name: postgres-operator
+    namespace: argocd
+  spec:
+    destination:
+      namespace: default
+      server: https://kubernetes.default.svc
+    project: default
+    source:
+      directory:
+        jsonnet: {}
+        recurse: true
+      path: manifests
+      repoURL: https://github.com/zalando/postgres-operator.git
+      targetRevision: master
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
