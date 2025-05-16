@@ -105,7 +105,7 @@ docker info
 ### Apply Postgres Operator 
 Clone this repo first
 ```bash
-kubectl apply -k root-app.yaml
+kubectl apply -f root-app.yaml
 ```
 
 ## Build and Push Docker Image Locally 
