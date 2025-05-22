@@ -99,12 +99,12 @@ kubectl apply -f root-app.yaml
 ```
 
 ### Connect to Postgres deployed to minikube
-## Port forward the postgres service to your local port
+#### Port forward the postgres service to your local port
 ```bash
 kubectl -n default port-forward acid-minimal-cluster-0 5432:5432
 ```
 
-## Username and password
+#### Username and password
 ```bash
 UserName:
 kubectl get secret postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do \
