@@ -120,12 +120,15 @@ kubectl get secret postgres.acid-minimal-cluster.credentials.postgresql.acid.zal
 ```bash
 eval $(minikube docker-env)
 ```
+is used to configure your shell to use the Docker daemon inside the Minikube VM, instead of your local machine's Docker daemon.
+Kubernetes inside Minikube will look for images in Minikube’s Docker daemon, not your host's.
+This avoids needing to push your image to a remote registry — it's available directly to Minikube.
 
 ### Check Docker Info
 ```bash
 docker info
 ```
-## Build and Push Docker Image Locally to Minikube Docker daemon and push to minikube locall registry
+## Build and Push Docker Image Docker daemon inside the Minikube VM and push to minikube local registry
 ```bash
 eval $(minikube docker-env)
 docker build -t localhost:5000/my-image:tag .
