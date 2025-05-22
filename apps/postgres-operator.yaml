@@ -10,7 +10,7 @@ spec:
     path: manifests
     targetRevision: master
     directory:
-      recurse: true
+      recurse: false
   destination:
     server: https://kubernetes.default.svc
     namespace: default
