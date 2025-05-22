@@ -90,16 +90,6 @@ argocd login localhost:8080
 
 ## Local Docker Registry with Minikube
 
-### Use Minikube Docker Daemon
-```bash
-eval $(minikube docker-env)
-```
-
-### Check Docker Info
-```bash
-docker info
-```
-
 ## Deploy PostgreSQL Operator
 
 ### Apply Postgres Operator 
@@ -108,7 +98,34 @@ Clone this repo first
 kubectl apply -f root-app.yaml
 ```
 
-## Build and Push Docker Image Locally 
+### Connect to Postgres deployed to minikube
+## Port forward the postgres service to your local port
+```bash
+kubectl -n default port-forward acid-minimal-cluster-0 5432:5432
+```
+
+## Username and password
+```bash
+UserName:
+kubectl get secret postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do \
+  -o jsonpath="{.data.username}" | base64 -d
+
+Password:
+kubectl get secret postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do \
+  -o jsonpath="{.data.password}" | base64 -d
+
+
+```
+### Use Minikube Docker Daemon to build your docker images
+```bash
+eval $(minikube docker-env)
+```
+
+### Check Docker Info
+```bash
+docker info
+```
+## Build and Push Docker Image Locally to Minikube Docker daemon and push to minikube locall registry
 ```bash
 eval $(minikube docker-env)
 docker build -t localhost:5000/my-image:tag .
