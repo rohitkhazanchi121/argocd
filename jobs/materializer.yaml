@@ -20,6 +20,8 @@ spec:
         - env:
             - name: ENVIRONMENT
               value: qa
+            - name: ENABLE_HVC_EH_OUTPUT
+              value: 'false'
             - name: PG_DATABASE
               value: postgres
             - name: PG_HOST
