@@ -18,6 +18,6 @@ spec:
     bar: {}
     app: 
       extensions:
-        timescaledb: timescaledb
+        timescaledb: public
   postgresql:
     version: "17"
