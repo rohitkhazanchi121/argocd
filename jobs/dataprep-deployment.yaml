@@ -16,7 +16,7 @@ spec:
       initContainers:
         - env:
             - name: PG_DATABASE
-              value: postgres
+              value: app
             - name: PG_HOST
               value: acid-minimal-cluster.default.svc.cluster.local
             - name: PG_PORT
@@ -50,7 +50,7 @@ spec:
       containers:
         - env:
             - name: PG_DATABASE
-              value: postgres
+              value: app
             - name: PG_HOST
               value: acid-minimal-cluster.default.svc.cluster.local
             - name: PG_PORT
