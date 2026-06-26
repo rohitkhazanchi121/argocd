@@ -13,7 +13,6 @@ spec:
     - createdb
     foo_user: []  # role for application foo
   preparedDatabases:
-    bar: {}
     app:
       defaultUsers: true
       extensions:
