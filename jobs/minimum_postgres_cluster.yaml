@@ -17,6 +17,7 @@ spec:
   preparedDatabases:
     bar: {}
     app: 
+      defaultUsers: true
       extensions:
         timescaledb: public
   postgresql:
