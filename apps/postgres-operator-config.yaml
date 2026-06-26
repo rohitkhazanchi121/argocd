@@ -1,0 +1,7 @@
+apiVersion: acid.zalan.do/v1
+kind: OperatorConfiguration
+metadata:
+  name: postgresql-operator-default-configuration
+  namespace: default
+configuration:
+  docker_image: timescale/timescaledb:latest-pg17
