@@ -15,7 +15,9 @@ spec:
   databases:
     app: zalando
   preparedDatabases:
-    app:
-      extensions: [timescaledb]
+    bar: {}
+    app: 
+      extensions:
+        timescaledb: timescaledb
   postgresql:
     version: "17"
