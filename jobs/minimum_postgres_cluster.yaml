@@ -19,6 +19,10 @@ spec:
         timescaledb: public
   postgresql:
     version: "17"
+    parameters:
+      shared_preload_libraries: "bg_mon,pg_stat_statements,timescaledb"
+      # Expressly tell the database instance to unlock the full feature set
+      timescaledb.license: "timescale"
 
   env:
     - name: TIMESCALEDB_APACHE_ONLY
