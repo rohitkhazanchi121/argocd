@@ -19,3 +19,7 @@ spec:
         timescaledb: public
   postgresql:
     version: "17"
+
+  env:
+    - name: TIMESCALEDB_APACHE_ONLY
+      value: "false"
