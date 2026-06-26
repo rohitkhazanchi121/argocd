@@ -13,8 +13,9 @@ spec:
     - createdb
     foo_user: []  # role for application foo
   databases:
-    foo: zalando  # dbname: owner
+    app: zalando
   preparedDatabases:
-    bar: {}
+    app:
+      extensions: [timescaledb]
   postgresql:
     version: "17"

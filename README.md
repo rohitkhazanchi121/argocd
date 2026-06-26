@@ -93,7 +93,7 @@ argocd login localhost:8080
 ## Deploy PostgreSQL Operator
 
 ### Apply Postgres Operator 
-Clone this repo first
+Clone this repo first and in the repo terminal (or navigate to cloned folder in your terminal and run )
 ```bash
 kubectl apply -f root-app.yaml
 ```
