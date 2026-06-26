@@ -12,11 +12,10 @@ spec:
     - superuser
     - createdb
     foo_user: []  # role for application foo
-  databases:
-    app: zalando
   preparedDatabases:
     bar: {}
     app:
+      defaultUsers: true
       extensions:
         timescaledb: public
   postgresql:
