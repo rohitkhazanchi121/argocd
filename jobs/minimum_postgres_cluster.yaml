@@ -7,7 +7,6 @@ spec:
   volume:
     size: 1Gi
   numberOfInstances:  1
-  dockerImage: timescale/timescaledb:latest-pg17
   users:
     zalando:  # database owner
     - superuser
