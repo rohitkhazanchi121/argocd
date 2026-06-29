@@ -22,6 +22,12 @@ spec:
     shared_preload_libraries:
       - 'timescaledb'
       - 'pg_stat_statements'
+    
+    # MANDATORY PARAMETERS FOR TIMESCALEDB
+    parameters:
+      timescaledb.max_background_workers: '16'
+      max_worker_processes: '32'
+      max_parallel_workers: '8'
 
   bootstrap:
     initdb:
@@ -30,6 +36,7 @@ spec:
       secret:
         name: app-user-secret
       postInitTemplateSQL:
+        - 
         - CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 
 # apiVersion: "acid.zalan.do/v1"
