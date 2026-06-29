@@ -1,39 +1,20 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: postgres-operator
-#   namespace: argocd
-# spec:
-#   project: default
-#   source:
-#     repoURL: https://github.com/zalando/postgres-operator.git
-#     path: manifests
-#     targetRevision: master
-#     directory:
-#       recurse: false
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: default
-#   syncPolicy:
-#     automated:
-#       selfHeal: true
-#       prune: true
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-# 1. Reference a stable, pinned version of Zalando's manifests (instead of master)
-resources:
-  - https://github.com
-
-# 2. Patch the default configuration parameters inside the Operator Configuration
-patches:
-  - target:
-      kind: OperatorConfiguration
-      name: postgresql-operator-configuration
-    patch: |-
-      - op: replace
-        path: /configuration/kubernetes/docker_image
-        value: "ghcr.io/arundo/spilo-timescaledb-toolkit:16-2.14"
-      - op: replace
-        path: /configuration/patroni/timescaledb_apache_only
-        value: false
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-operator
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/zalando/postgres-operator.git
+    path: manifests
+    targetRevision: master
+    directory:
+      recurse: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

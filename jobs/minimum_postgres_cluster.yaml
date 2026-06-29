@@ -12,18 +12,21 @@ spec:
     - superuser
     - createdb
     foo_user: []  # role for application foo
-  preparedDatabases:
-    app:
-      defaultUsers: true
-      extensions:
-        timescaledb: public
+
+  databases:
+    app: zalando
   postgresql:
     version: "17"
     parameters:
       shared_preload_libraries: "bg_mon,pg_stat_statements,timescaledb"
       # Expressly tell the database instance to unlock the full feature set
-      timescaledb.license: "timescale"
-
+      timescaledb.telemetry_level: "off"
+  dockerImage: ghcr.io/zalando/spilo-17:4.0-p3
+  preparedDatabases:
+    app:
+      defaultUsers: true
+      extensions:
+        timescaledb: public
   env:
     - name: TIMESCALEDB_APACHE_ONLY
       value: "false"
