@@ -3,10 +3,9 @@ kind: Application
 metadata:
   name: cloudnative-pg
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
+
   source:
     repoURL: https://cloudnative-pg.github.io/charts
     chart: cloudnative-pg
@@ -14,13 +13,18 @@ spec:
     helm:
       values: |
         crds:
-          create: false    # CRDs already applied above
+          create: true
+
   destination:
     server: https://kubernetes.default.svc
     namespace: cnpg-system
+
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true              # lets the API server handle field ownership, avoids ConfigMap conflicts
+      - SkipDryRunOnMissingResource=true  # stops the "pooler CRD missing" dry-run failure
+      - ApplyOutOfSyncOnly=true           # only touches resources that are actually out of sync
