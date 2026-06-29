@@ -21,7 +21,7 @@ spec:
       shared_preload_libraries: "pg_stat_statements,pg_cron"
       # Expressly tell the database instance to unlock the full feature set
       timescaledb.telemetry_level: "off"
-      cron.database_name: "app" 
+      cron.database_name: "postgres" 
   dockerImage: ghcr.io/zalando/spilo-17:4.0-p3
   preparedDatabases:
     bar: {}
