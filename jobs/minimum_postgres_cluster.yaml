@@ -7,7 +7,7 @@ metadata:
 
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:17
+  imageName: ghcr.io/clevyr/cloudnativepg-timescale:17-ts2
 
   imagePullPolicy: Always
 
@@ -16,6 +16,7 @@ spec:
 
   postgresql:
     shared_preload_libraries:
+      - timescaledb
       - pg_stat_statements
 
   bootstrap:
