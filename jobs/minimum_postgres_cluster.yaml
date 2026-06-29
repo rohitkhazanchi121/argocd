@@ -15,7 +15,7 @@ spec:
   postgresql:
     version: "17"
     parameters:
-      shared_preload_libraries: "bg_mon,pg_stat_statements,timescaledb"
+      shared_preload_libraries: "bg_mon,pg_stat_statements,pg_cron,timescaledb"
       # Expressly tell the database instance to unlock the full feature set
       timescaledb.telemetry_level: "off"
   dockerImage: ghcr.io/zalando/spilo-17:4.0-p3
