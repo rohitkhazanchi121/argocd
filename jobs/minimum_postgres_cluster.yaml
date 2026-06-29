@@ -18,7 +18,7 @@ spec:
   postgresql:
     version: "17"
     parameters:
-      shared_preload_libraries: "pg_stat_statements,pg_cron"
+      shared_preload_libraries: "pg_stat_statements,pg_cron,timescaledb"
       # Expressly tell the database instance to unlock the full feature set
       timescaledb.telemetry_level: "off"
       cron.database_name: "postgres" 
