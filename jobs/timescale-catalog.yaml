@@ -2,6 +2,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: ClusterImageCatalog
 metadata:
   name: timescale-catalog
+  namespace: default
 spec:
   images:
     - major: 17
