@@ -16,8 +16,8 @@ spec:
 
   postgresql:
     shared_preload_libraries:
-      - timescaledb
-      - pg_stat_statements
+      - 'timescaledb'
+      - 'pg_stat_statements'
 
   bootstrap:
     initdb:
@@ -25,7 +25,7 @@ spec:
       owner: appuser
       secret:
         name: app-user-secret
-      postInitSQL:
+      postInitTemplateSQL:
         - CREATE EXTENSION IF NOT EXISTS timescaledb;
         - CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 
