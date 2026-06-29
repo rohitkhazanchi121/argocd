@@ -1,39 +1,68 @@
-apiVersion: "acid.zalan.do/v1"
-kind: postgresql
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+
 metadata:
-  name: acid-minimal-cluster
+  name: timescale-postgres
+  namespace: default
+
 spec:
-  teamId: "acid"
-  volume:
+  instances: 1
+  imageName: timescale/timescaledb-ha:pg17
+
+  storage:
     size: 1Gi
-  numberOfInstances:  1
+
   postgresql:
-    parameters:
-      log_statement: "all"
-      log_min_messages: "debug1"
-      client_min_messages: "debug1"
-      log_error_verbosity: "verbose"
-  users:
-    zalando:  # database owner
-    - superuser
-    - createdb
-    foo_user: []  # role for application foo
-  databases:
-    app: zalando
-    postgres: zalando
-  postgresql:
-    version: "17"
-    parameters:
-      shared_preload_libraries: "pg_stat_statements,pg_stat_kcache,pg_auth_mon,pg_cron,timescaledb"
-      # Expressly tell the database instance to unlock the full feature setß
-      timescaledb.telemetry_level: "off"
-      cron.database_name: "postgres"
-  dockerImage: ghcr.io/zalando/spilo-17:4.0-p3
-  preparedDatabases:
-    app:
-      defaultUsers: true
-      extensions:
-        timescaledb: public
-  env:
-    - name: TIMESCALEDB_APACHE_ONLY
-      value: "false"
+    shared_preload_libraries:
+      - timescaledb
+      - pg_stat_statements
+
+  bootstrap:
+    initdb:
+      database: app
+      owner: appuser
+      secret:
+        name: app-user-secret
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+
+# apiVersion: "acid.zalan.do/v1"
+# kind: postgresql
+# metadata:
+#   name: acid-minimal-cluster
+# spec:
+#   teamId: "acid"
+#   volume:
+#     size: 1Gi
+#   numberOfInstances:  1
+#   postgresql:
+#     parameters:
+#       log_statement: "all"
+#       log_min_messages: "debug1"
+#       client_min_messages: "debug1"
+#       log_error_verbosity: "verbose"
+#   users:
+#     zalando:  # database owner
+#     - superuser
+#     - createdb
+#     foo_user: []  # role for application foo
+#   databases:
+#     app: zalando
+#     postgres: zalando
+#   postgresql:
+#     version: "17"
+#     parameters:
+#       shared_preload_libraries: "pg_stat_statements,pg_stat_kcache,pg_auth_mon,pg_cron,timescaledb"
+#       # Expressly tell the database instance to unlock the full feature setß
+#       timescaledb.telemetry_level: "off"
+#       cron.database_name: "postgres"
+#   dockerImage: ghcr.io/zalando/spilo-17:4.0-p3
+#   preparedDatabases:
+#     app:
+#       defaultUsers: true
+#       extensions:
+#         timescaledb: public
+#   env:
+#     - name: TIMESCALEDB_APACHE_ONLY
+#       value: "false"
