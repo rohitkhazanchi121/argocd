@@ -7,7 +7,7 @@ metadata:
 
 spec:
   instances: 1
-  imageName: ghcr.io/clevyr/cloudnativepg-timescale:17-ts2
+  imageName: ghcr.io/cloudnative-pg/postgresql:17
 
   imagePullPolicy: Always
 
