@@ -7,7 +7,7 @@ metadata:
 
 spec:
   instances: 1
-  imageName: timescale/timescaledb-ha:pg17
+  imageName: timescale/timescaledb:2.24.0-pg17
 
   storage:
     size: 1Gi
