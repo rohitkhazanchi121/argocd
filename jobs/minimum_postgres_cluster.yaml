@@ -12,6 +12,8 @@ spec:
     - superuser
     - createdb
     foo_user: []  # role for application foo
+  databases:
+    app: zalando
   postgresql:
     version: "17"
     parameters:
