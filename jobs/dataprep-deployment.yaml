@@ -33,7 +33,7 @@ spec:
             - name: OTEL_SERVICE_NAME
               value: "live-ingestion"
             - name: SITE
-              value: hvc
+              value: qb
           image: localhost:5000/datastore:tag
           name: pro-opti-db-initialize
           resources:
@@ -64,7 +64,7 @@ spec:
             - name: OTEL_SERVICE_NAME
               value: "live-ingestion"
             - name: SITE
-              value: hvc
+              value: qb
           image: localhost:5000/datastore:tag
           command: ["python","-c","import time; time.sleep(60)"]
           name: pro-opti-dataprep
