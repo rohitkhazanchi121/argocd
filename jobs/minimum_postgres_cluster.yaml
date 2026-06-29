@@ -7,6 +7,12 @@ spec:
   volume:
     size: 1Gi
   numberOfInstances:  1
+  postgresql:
+    parameters:
+      log_statement: "all"
+      log_min_messages: "debug1"
+      client_min_messages: "debug1"
+      log_error_verbosity: "verbose"
   users:
     zalando:  # database owner
     - superuser
@@ -18,15 +24,16 @@ spec:
   postgresql:
     version: "17"
     parameters:
-      shared_preload_libraries: "pg_stat_statements,pg_cron,timescaledb"
-      # Expressly tell the database instance to unlock the full feature set
+      shared_preload_libraries: "pg_stat_statements,pg_stat_kcache,pg_auth_mon,pg_cron,timescaledb"
+      # Expressly tell the database instance to unlock the full feature setß
       timescaledb.telemetry_level: "off"
-      cron.database_name: "postgres" 
+      cron.database_name: "postgres"
   dockerImage: ghcr.io/zalando/spilo-17:4.0-p3
   preparedDatabases:
-    bar: {}
     app:
       defaultUsers: true
+      extensions:
+        timescaledb: public
   env:
     - name: TIMESCALEDB_APACHE_ONLY
       value: "false"
