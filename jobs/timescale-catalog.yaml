@@ -1,0 +1,8 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ClusterImageCatalog
+metadata:
+  name: timescale-catalog
+spec:
+  images:
+    - major: 17
+      image: ghcr.io/clevyr/cloudnativepg-timescale:17-ts2
