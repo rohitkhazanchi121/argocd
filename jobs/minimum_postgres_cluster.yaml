@@ -14,6 +14,7 @@ spec:
     foo_user: []  # role for application foo
   databases:
     app: zalando
+    postgres: zalando
   postgresql:
     version: "17"
     parameters:
@@ -23,10 +24,9 @@ spec:
       cron.database_name: "app" 
   dockerImage: ghcr.io/zalando/spilo-17:4.0-p3
   preparedDatabases:
+    bar: {}
     app:
       defaultUsers: true
-      extensions:
-        timescaledb: public
   env:
     - name: TIMESCALEDB_APACHE_ONLY
       value: "false"
