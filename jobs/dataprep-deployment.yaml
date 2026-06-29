@@ -18,18 +18,15 @@ spec:
             - name: PG_DATABASE
               value: app
             - name: PG_HOST
-              value: acid-minimal-cluster.default.svc.cluster.local
+              value: timescale-postgres-rw.default.svc.cluster.local
             - name: PG_PORT
               value: "5432"
             - name: PG_USERNAME
-              valueFrom:
-                secretKeyRef:
-                    name: postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                    key: username
+              value: appuser
             - name: PG_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                  name: app-user-secret
                   key: password
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: "service.namespace=Opti,service.instance.id=0"
@@ -52,18 +49,15 @@ spec:
             - name: PG_DATABASE
               value: app
             - name: PG_HOST
-              value: acid-minimal-cluster.default.svc.cluster.local
+              value: timescale-postgres-rw.default.svc.cluster.local
             - name: PG_PORT
               value: "5432"
             - name: PG_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                  key: username
+              value: appuser
             - name: PG_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                  name: app-user-secret
                   key: password
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: "service.namespace=Opti,service.instance.id=0"
