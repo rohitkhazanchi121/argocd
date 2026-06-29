@@ -9,6 +9,8 @@ spec:
   instances: 1
   imageName: ghcr.io/clevyr/cloudnativepg-timescale:17.13-ts2.26.4
 
+  imagePullPolicy: Always
+
   storage:
     size: 1Gi
 
